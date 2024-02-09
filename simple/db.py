@@ -66,7 +66,24 @@ async def fetch_query(
                 return rows
         except Exception as E:
             print(f"db: error: {E}")
-        
+
+
+async def insert_once(
+        session: aiosqlite.Connection, 
+        table: str, 
+        column: str,
+        value: str
+    ):
+    try:
+        async with session.execute(
+            f"INSERT INTO {table} ({column}) VALUES (?)", 
+            (value,)
+        ):
+            await session.commit()
+            return True
+    except aiosqlite.IntegrityError as e:
+        return False
+
 async def insert_query_returning(
     session: aiosqlite.Connection, 
     query: str,

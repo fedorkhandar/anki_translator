@@ -22,6 +22,7 @@ TABLES = [
     'translated_source',
     'user_source_m2m_translated_source',
     'sentence',
+    'line'
     # 'translated_source_m2m_sentence',
 ]
 
@@ -32,6 +33,7 @@ COLUMNS = [
     "translated_source",
     "word_phrase",
     "sentence",
+    "line"
 ]
 
 FOLDERS = [
@@ -74,21 +76,21 @@ async def main(clear_db_flag: bool = False):
     # FROM 'cleaned_sources' TO 'user_sources' ===
     # print("Now process manually every file in 'cleaned_sources' and put it to 'user_sources'")
 
-    # files in folder 'user_sources' -> records in table 'user_source'
-    user_source_set = ResourceSet(UserSource(), session)
-    await user_source_set.do_work()
+    # # files in folder 'user_sources' -> records in table 'user_source'
+    # user_source_set = ResourceSet(UserSource(), session)
+    # await user_source_set.do_work()
 
-    # records in table 'user_source' -> records in table 'translated_source' + files in folder 'translated_sources'
-    translated_source_set = ResourceSet(TranslatedSource(), session)
-    await translated_source_set.do_work()
+    # # records in table 'user_source' -> records in table 'translated_source' + files in folder 'translated_sources'
+    # translated_source_set = ResourceSet(TranslatedSource(), session)
+    # await translated_source_set.do_work()
 
-    # === USER MANUALLY PUTS FILES FROM 'translated_sources' TO 'words_and_phrases' ===
-    # files in folder 'words_and_phrases' -> records in table 'words_and_phrases'
-    waph_set = ResourceSet(WordPhrase(), session)
-    await waph_set.do_work()
+    # # === USER MANUALLY PUTS FILES FROM 'translated_sources' TO 'words_and_phrases' ===
+    # # files in folder 'words_and_phrases' -> records in table 'words_and_phrases'
+    # waph_set = ResourceSet(WordPhrase(), session)
+    # await waph_set.do_work()
 
-    card_set = ResourceSet(Card(), session)
-    await card_set.do_work()
+    # card_set = ResourceSet(Card(), session)
+    # await card_set.do_work()
 
     await session.close()
 

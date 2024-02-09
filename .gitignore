@@ -1,7 +1,9 @@
-**/__pycache__
-**/_drafts
-**/user_words_and_phrases
-**/translated_sources
-**/user_sources
-**/cleaned_sources
-**/sources
+**/__pycache__/**
+**/_drafts/*
+**/user_words_and_phrases/*
+**/translated_sources/*
+**/user_sources/*
+**/cleaned_sources/*
+**/sources/*
+simple/data/atdb.db
+simple/data/atdb.sqbpro
